@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper Agent</h1>
+        <form method="POST">
+            <label for="url">URL to Scrape:</label>
+            <input type="url" id="url" name="url" required>
+            <label for="selector">CSS Selector:</label>
+            <input type="text" id="selector" name="selector" required placeholder="e.g., h1, .class, #id">
+            <button type="submit">Scrape</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+            <p class="success">{{ success }}</p>
+            <h2>Scraped Data:</h2>
+            <ul>
+                {% for item in data %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
